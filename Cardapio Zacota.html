@@ -7,18 +7,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
-  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --purple: #381E21;
-      --purple-light: #4e2a2e;
-      --purple-faint: #f5eeef;
-      --purple-mid: #d9bfc1;
-      --white: #2a1215;
       --bg: #1e0c0f;
       --text: #f0e0d6;
       --text-muted: #b89a9d;
@@ -37,20 +30,15 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    #root { min-height: 100vh; }
-
     /* HEADER */
     .header {
       background: var(--purple);
-      padding: 0;
       z-index: 100;
       box-shadow: 0 2px 20px rgba(56,30,33,0.5);
       overflow: hidden;
     }
 
     .header-inner {
-      max-width: 100%;
-      margin: 0;
       padding: 40px 24px 36px;
       display: flex;
       align-items: center;
@@ -68,96 +56,45 @@
       z-index: 3;
     }
 
-    /* Decorative food images */
     .deco {
       position: absolute;
       pointer-events: none;
       z-index: 2;
     }
 
-    /* Pizza - large, bottom-left */
     .deco-pizza {
       width: clamp(240px, 32vw, 420px);
       height: clamp(240px, 32vw, 420px);
-      border-radius: 0;
       left: clamp(-100px, -10vw, -50px);
       bottom: clamp(-80px, -8vw, -40px);
       object-fit: contain;
-      object-position: center;
       filter: drop-shadow(0 8px 24px rgba(0,0,0,0.5));
     }
 
-    /* Plate - top right corner */
     .deco-plate {
       width: clamp(200px, 26vw, 360px);
       height: clamp(200px, 26vw, 360px);
-      border-radius: 0;
       right: clamp(-60px, -5vw, -20px);
       top: clamp(-80px, -8vw, -40px);
       object-fit: contain;
-      object-position: center;
       filter: drop-shadow(0 8px 24px rgba(0,0,0,0.5));
     }
 
-    /* Drinks2 - bottom right, away from logo */
-    .deco-drinks2 {
-      width: clamp(180px, 24vw, 320px);
-      height: clamp(130px, 17vw, 220px);
-      border-radius: 0;
-      right: clamp(-20px, -1vw, 10px);
-      bottom: clamp(-20px, -2vw, 0px);
-      object-fit: contain;
-      object-position: bottom right;
-      filter: drop-shadow(0 8px 20px rgba(0,0,0,0.4));
-    }
-
-    /* Porcoes - above pizza */
     .deco-porcoes {
       width: clamp(160px, 20vw, 280px);
       height: clamp(160px, 20vw, 280px);
-      border-radius: 0;
       left: clamp(20px, 5vw, 80px);
       top: clamp(-70px, -7vw, -30px);
       object-fit: contain;
       filter: drop-shadow(0 8px 20px rgba(0,0,0,0.5));
     }
 
-    /* Bebidas - bottom right, away from logo */
-    .deco-bebidas {
-      width: clamp(180px, 24vw, 320px);
-      height: clamp(120px, 16vw, 210px);
-      border-radius: 0;
-      right: clamp(-20px, 0vw, 10px);
-      bottom: clamp(-20px, -2vw, 0px);
-      object-fit: contain;
-      object-position: bottom right;
-      filter: drop-shadow(0 8px 20px rgba(0,0,0,0.5));
-    }
-
     @media (max-width: 360px) {
-      .deco-plate { display: none; }
-      .deco-porcoes { display: none; }
+      .deco-plate, .deco-porcoes { display: none; }
       .deco-pizza { width: 140px; height: 140px; left: -30px; bottom: -30px; }
     }
 
-    .header-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(28px, 6vw, 42px);
-      font-weight: 800;
-      color: #fff;
-      letter-spacing: 0.06em;
-      line-height: 1;
-    }
-
-    .header-tagline {
-      font-size: 12px;
-      color: rgba(255,255,255,0.65);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      font-weight: 400;
-    }
-
-    /* MAIN CATEGORY TABS */
+    /* TABS */
     .main-tabs {
       background: var(--purple);
       border-top: 1px solid rgba(255,255,255,0.12);
@@ -168,7 +105,6 @@
       margin: 0 auto;
       padding: 0 24px;
       display: flex;
-      gap: 0;
     }
 
     .main-tab {
@@ -186,15 +122,13 @@
     }
 
     .main-tab:hover { color: rgba(255,255,255,0.9); }
-    .main-tab.active {
-      color: #fff;
-      border-bottom-color: #fff;
-    }
+    .main-tab.active { color: #fff; border-bottom-color: #fff; }
 
-    /* SUB CATEGORY STRIP */
     .sub-tabs-wrap {
       background: rgba(35,10,12,0.95);
       border-bottom: 1px solid rgba(255,255,255,0.08);
+      position: sticky;
+      top: 0;
       z-index: 90;
     }
 
@@ -225,20 +159,19 @@
     }
 
     .sub-tab:hover { color: #fff; }
-    .sub-tab.active {
-      color: #fff;
-      border-bottom-color: #fff;
-      font-weight: 600;
-    }
+    .sub-tab.active { color: #fff; border-bottom-color: #fff; font-weight: 600; }
 
-    /* MAIN CONTENT */
+    /* CONTENT */
     .content {
       max-width: 1100px;
       margin: 0 auto;
       padding: 32px 24px 120px;
     }
 
-    /* SECTION HEADER */
+    @media (max-width: 640px) {
+      .content { padding: 20px 16px 120px; }
+    }
+
     .section-header {
       margin-bottom: 24px;
       display: flex;
@@ -268,7 +201,6 @@
 
     @media (max-width: 640px) {
       .card-grid { grid-template-columns: 1fr; gap: 12px; }
-      .content { padding: 20px 16px 120px; }
     }
 
     /* ITEM CARD */
@@ -276,30 +208,11 @@
       background: var(--card-bg);
       border-radius: 14px;
       border: 1px solid var(--border);
-      padding: 0;
       display: flex;
       flex-direction: column;
-      gap: 0;
       transition: box-shadow 200ms ease, transform 200ms ease;
-      cursor: default;
       position: relative;
       overflow: hidden;
-    }
-
-    .card-img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      display: block;
-      background: #e8dff0;
-    }
-
-    .card-body {
-      padding: 16px 18px 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      flex: 1;
     }
 
     .item-card::before {
@@ -325,6 +238,21 @@
     }
 
     .item-card.premium::before { opacity: 0.4; }
+
+    .card-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-body {
+      padding: 16px 18px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+    }
 
     .badge-premium {
       display: inline-flex;
@@ -375,9 +303,8 @@
       min-width: 90px;
       transition: background 160ms ease;
     }
-    .item-card:hover .price-pill {
-      background: rgba(255,255,255,0.13);
-    }
+
+    .item-card:hover .price-pill { background: rgba(255,255,255,0.13); }
 
     .price-label {
       font-size: 10px;
@@ -399,11 +326,52 @@
       color: #fff;
     }
 
-    /* DIVIDER */
-    .divider {
-      height: 1px;
-      background: var(--border);
-      margin: 40px 0 32px;
+    /* PEDIR BUTTON */
+    .pedir-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      margin-top: 10px;
+      padding: 10px 16px;
+      background: var(--purple);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer;
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      transition: background 180ms ease, transform 150ms ease, box-shadow 180ms ease;
+      letter-spacing: 0.03em;
+      text-decoration: none;
+    }
+
+    .pedir-btn:hover {
+      background: #5a2028;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    }
+
+    .pedir-btn:active { transform: scale(0.97); }
+
+    @keyframes ripple {
+      0%   { transform: scale(0); opacity: 0.5; }
+      100% { transform: scale(4); opacity: 0; }
+    }
+
+    .ripple-el {
+      position: absolute;
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      background: rgba(255,255,255,0.25);
+      animation: ripple 600ms ease-out forwards;
+      pointer-events: none;
+      transform-origin: center;
     }
 
     /* WHATSAPP BUTTON */
@@ -433,548 +401,266 @@
 
     .wa-btn svg { width: 30px; height: 30px; }
 
-    /* EMPTY */
-    .empty-state {
-      text-align: center;
-      padding: 60px 20px;
-      color: var(--text-muted);
+    @media (max-width: 480px) {
+      .wa-btn { bottom: 20px; right: 16px; }
     }
 
-    /* FADE IN */
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(12px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    .fade-in {
-      animation: fadeInUp 280ms ease forwards;
-    }
-
-    /* PEDIR BUTTON */
-    .pedir-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
-      margin-top: 10px;
-      padding: 10px 16px;
-      background: var(--purple);
-      color: #fff;
-      border: none;
-      border-radius: 10px;
-      font-size: 13px;
-      font-weight: 600;
-      font-family: 'DM Sans', sans-serif;
-      cursor: pointer;
-      width: 100%;
-      position: relative;
-      overflow: hidden;
-      transition: background 180ms ease, transform 150ms ease, box-shadow 180ms ease;
-      letter-spacing: 0.03em;
-    }
-
-    .pedir-btn:hover {
-      background: #5a2028;
-      transform: translateY(-1px);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-    }
-
-    .pedir-btn:active {
-      transform: scale(0.97);
-    }
-
-    @keyframes ripple {
-      0%   { transform: scale(0); opacity: 0.5; }
-      100% { transform: scale(4); opacity: 0; }
-    }
-
-    .pedir-btn .ripple-el {
-      position: absolute;
-      border-radius: 50%;
-      width: 80px;
-      height: 80px;
-      background: rgba(255,255,255,0.25);
-      animation: ripple 600ms ease-out forwards;
-      pointer-events: none;
-      transform-origin: center;
-    }
-
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(194,80,96,0.4); }
-      50%       { box-shadow: 0 0 0 8px rgba(194,80,96,0); }
-    }
-
-    .pedir-btn.added {
-      background: #2a6b3a;
-      animation: pulse 600ms ease;
-    }
-
-    /* TWEAKS PANEL */
-    .tweaks-panel {
-      position: fixed;
-      bottom: 100px;
-      right: 24px;
-      background: #2e1518;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 20px;
-      width: 260px;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.15);
-      z-index: 998;
-      display: none;
-    }
-    .tweaks-panel.open { display: block; }
-
-    .tweaks-title {
-      font-size: 13px;
-      font-weight: 700;
-      color: #f0e0d6;
-      margin-bottom: 16px;
-      letter-spacing: 0.04em;
-    }
-
-    .tweak-row {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      margin-bottom: 14px;
-    }
-
-    .tweak-label {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .tweak-select, .tweak-input-color {
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 7px 10px;
-      font-size: 13px;
-      font-family: 'DM Sans', sans-serif;
-      color: var(--text);
-      background: #fff;
-      cursor: pointer;
-    }
-
-    .tweak-toggle {
-      display: flex;
-      gap: 6px;
-    }
-
-    .tweak-opt {
-      flex: 1;
-      padding: 7px 6px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      font-size: 12px;
-      font-weight: 500;
-      text-align: center;
-      cursor: pointer;
-      transition: all 150ms;
-      font-family: 'DM Sans', sans-serif;
-      background: #fff;
-      color: var(--text-muted);
-    }
-
-    .tweak-opt.active {
-      background: var(--purple);
-      border-color: var(--purple);
-      color: #fff;
-    }
-
-    .tweak-close {
-      position: absolute;
-      top: 12px; right: 12px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: var(--text-muted);
-      font-size: 18px;
-      line-height: 1;
-      font-family: inherit;
-    }
-
-    @media (max-width: 480px) {
-      .wa-btn { bottom: 20px; right: 16px; }
-    }
+    .fade-in { animation: fadeInUp 280ms ease forwards; }
   </style>
 </head>
 <body>
-<div id="root"></div>
 
-<script type="text/babel">
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+      <img class="deco deco-pizza" src="img-pizza-t.png" alt="" />
+      <img class="deco deco-porcoes" src="img-porcoes-t.png" alt="" />
+      <img class="deco deco-plate" src="img-prato-t.png" alt="" />
+      <img src="zacota-logo-transparent.png" alt="Zacota" class="header-logo-img" />
+    </div>
+    <div class="main-tabs">
+      <div class="main-tabs-inner" id="main-tabs"></div>
+    </div>
+  </header>
 
+  <!-- SUB TABS -->
+  <div class="sub-tabs-wrap">
+    <div class="sub-tabs-inner" id="sub-tabs"></div>
+  </div>
 
+  <!-- CONTENT -->
+  <main class="content" id="content"></main>
 
+  <!-- WHATSAPP -->
+  <a class="wa-btn" id="wa-btn" href="#" target="_blank" rel="noopener noreferrer" aria-label="Fazer pedido pelo WhatsApp">
+    <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
 
+  <script>
+    const WA_NUMBER = "5500000000000";
+    const WA_MSG = encodeURIComponent("Olá, gostaria de fazer um pedido!");
 
+    document.getElementById('wa-btn').href = `https://wa.me/${WA_NUMBER}?text=${WA_MSG}`;
 
-
-const { useState, useEffect, useRef, useCallback } = React;
-
-/* ─── DATA ─────────────────────────────────────────── */
-const MENU = [
-{
-  id: "pizzas",
-  name: "Pizzas",
-  subcategories: [
-  {
-    id: "tradicionais",
-    name: "Tradicionais",
-    items: [
-    { id: 1, name: "Muçarela", desc: "Muçarela especial e orégano", img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 49 }, { label: "8 Pedaços", value: 59 }] },
-    { id: 2, name: "Abobrinha do Campo", desc: "Abobrinha fatiada com alho desidratado", img: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 49 }, { label: "8 Pedaços", value: 59 }] },
-    { id: 3, name: "Calabresa", desc: "Calabresa fatiada e cebola", img: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 52 }, { label: "8 Pedaços", value: 62 }] },
-    { id: 4, name: "Marguerita", desc: "Muçarela, tomate e manjericão fresco", img: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 52 }, { label: "8 Pedaços", value: 62 }] },
-    { id: 5, name: "Portuguesa", desc: "Presunto, ovos, cebola e ervilha", img: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 55 }, { label: "8 Pedaços", value: 65 }] },
-    { id: 6, name: "Pepperoni", desc: "Pepperoni italiano e muçarela", img: "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 55 }, { label: "8 Pedaços", value: 65 }] },
-    { id: 7, name: "Bacon", desc: "Bacon crocante e muçarela", img: "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 55 }, { label: "8 Pedaços", value: 65 }] },
-    { id: 8, name: "Atum", desc: "Atum temperado, cebola e azeitonas", img: "https://images.unsplash.com/photo-1548369937-47519962c11a?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 55 }, { label: "8 Pedaços", value: 65 }] },
-    { id: 9, name: "Palmito", desc: "Palmito cremoso e muçarela", img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 55 }, { label: "8 Pedaços", value: 65 }] },
-    { id: 10, name: "Brócolis", desc: "Brócolis salteado e muçarela", img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 45 }, { label: "8 Pedaços", value: 55 }] }]
-  },
-  {
-    id: "frango",
-    name: "Frango",
-    items: [
-    { id: 11, name: "Frango com Catupiry", desc: "Frango temperado da casa e catupiry", img: "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 49 }, { label: "8 Pedaços", value: 59 }] },
-    { id: 12, name: "Frango Campestre", desc: "Frango e creme de milho", img: "https://images.unsplash.com/photo-1528137871618-79d2021a68f1?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 49 }, { label: "8 Pedaços", value: 59 }] },
-    { id: 13, name: "Frango Especial Zacota", desc: "Frango e mostarda, com toque agridoce especial", img: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 49 }, { label: "8 Pedaços", value: 59 }] },
-    { id: 14, name: "Strogonoff de Frango", desc: "Frango ao molho cremoso especial", img: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 59 }, { label: "8 Pedaços", value: 69 }] }]
-  },
-  {
-    id: "especiais",
-    name: "Especiais",
-    items: [
-    { id: 15, name: "Toscana", desc: "Linguiça toscana e cebola", img: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 62 }, { label: "8 Pedaços", value: 72 }] },
-    { id: 16, name: "Siciliana", desc: "Presunto, champignon e azeitonas", img: "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 62 }, { label: "8 Pedaços", value: 72 }] },
-    { id: 17, name: "Rúcula com Tomate Seco", desc: "Rúcula fresca e tomate seco", img: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 60 }, { label: "8 Pedaços", value: 70 }] },
-    { id: 18, name: "Carbonara", desc: "Bacon, ovos e parmesão", img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 60 }, { label: "8 Pedaços", value: 70 }] },
-    { id: 19, name: "Lombo Defumado", desc: "Lombo defumado e muçarela especial", img: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 60 }, { label: "8 Pedaços", value: 70 }] },
-    { id: 20, name: "Di Parma", desc: "Presunto parma e rúcula", img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 70 }, { label: "8 Pedaços", value: 80 }] }]
-  },
-  {
-    id: "premium",
-    name: "Premium Zacota",
-    premium: true,
-    items: [
-    { id: 21, name: "Bella Zacota", desc: "Guirlanda tomate seco & burrata", img: "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 89 }, { label: "8 Pedaços", value: 105 }] },
-    { id: 22, name: "Mignon & Gorgonzola", desc: "Filé mignon e gorgonzola nobre", img: "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 82 }, { label: "8 Pedaços", value: 95 }] },
-    { id: 23, name: "Costela Rústica", desc: "Costela desfiada bem temperada", img: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 78 }, { label: "8 Pedaços", value: 92 }] },
-    { id: 24, name: "Camarão da Lua", desc: "Camarão temperado e ervas frescas", img: "https://images.unsplash.com/photo-1548369937-47519962c11a?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 89 }, { label: "8 Pedaços", value: 105 }] }]
-  },
-  {
-    id: "doces",
-    name: "Pizzas Doces",
-    items: [
-    { id: 25, name: "Banana Nevada", desc: null, img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 45 }, { label: "8 Pedaços", value: 55 }] },
-    { id: 26, name: "Brigadeiro", desc: null, img: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 45 }, { label: "8 Pedaços", value: 55 }] },
-    { id: 27, name: "Casadinho", desc: null, img: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 45 }, { label: "8 Pedaços", value: 55 }] },
-    { id: 28, name: "Dois Amores", desc: null, img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 45 }, { label: "8 Pedaços", value: 55 }] },
-    { id: 29, name: "Romeu e Julieta", desc: null, img: "https://images.unsplash.com/photo-1528137871618-79d2021a68f1?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 45 }, { label: "8 Pedaços", value: 55 }] }]
-  }]
-},
-{
-  id: "bebidas",
-  name: "Bebidas",
-  subcategories: [
-  {
-    id: "refrigerantes",
-    name: "Refrigerantes",
-    items: [
-    { id: 30, name: "Refrigerante 350ml", desc: null, img: "https://images.unsplash.com/photo-1554866585-74be897adde0?w=500&fit=crop&q=80", prices: [{ label: null, value: 7 }] },
-    { id: 31, name: "H2O | Sprite Lemon", desc: null, img: "https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?w=500&fit=crop&q=80", prices: [{ label: null, value: 8 }] }]
-  },
-  {
-    id: "agua",
-    name: "Água",
-    items: [
-    { id: 32, name: "Água com gás", desc: null, img: "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=500&fit=crop&q=80", prices: [{ label: null, value: 5 }] },
-    { id: 33, name: "Água sem gás", desc: null, img: "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=500&fit=crop&q=80", prices: [{ label: null, value: 4.5 }] }]
-  },
-  {
-    id: "sucos",
-    name: "Sucos e Bebidas",
-    items: [
-    { id: 34, name: "Pink Lemonade", desc: null, img: "https://images.unsplash.com/photo-1621259182978-8ef4ee90a859?w=500&fit=crop&q=80", prices: [{ label: null, value: 15 }] },
-    { id: 35, name: "Suco Natural", desc: "Abacaxi, Laranja, Limão, Maracujá, Morango", img: "https://images.unsplash.com/photo-1621506289054-c53d94d60f00?w=500&fit=crop&q=80", prices: [{ label: null, value: 10 }] }]
-  },
-  {
-    id: "chopp",
-    name: "Chopp & Cerveja",
-    items: [
-    { id: 36, name: "Caneca Chopp 375ml", desc: null, img: "https://images.unsplash.com/photo-1608270586636-ed288a0a9fcb?w=500&fit=crop&q=80", prices: [{ label: null, value: 10 }] },
-    { id: 37, name: "Cervejas Ashby 600ml", desc: "Consultar sabores disponíveis", img: "https://images.unsplash.com/photo-1608270586636-ed288a0a9fcb?w=500&fit=crop&q=80", prices: [{ label: null, value: 16 }] },
-    { id: 38, name: "Cervejas Long Neck", desc: "Consultar sabores disponíveis", img: "https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=500&fit=crop&q=80", prices: [{ label: null, value: 10 }] }]
-  }]
-}];
-
-
-
-/* ─── FORMAT ─────────────────────────────────────────── */
-const fmt = (v) => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-
-/* ─── CARD ─────────────────────────────────────────── */
-function ItemCard({ item, isPremium, cardStyle }) {
-  const single = item.prices.length === 1 && item.prices[0].label === null;
-  const compact = cardStyle === 'compact';
-  const [added, setAdded] = useState(false);
-
-  const handlePedir = (e) => {
-    // Ripple
-    const btn = e.currentTarget;
-    const rect = btn.getBoundingClientRect();
-    const ripple = document.createElement('span');
-    ripple.className = 'ripple-el';
-    ripple.style.left = e.clientX - rect.left - 40 + 'px';
-    ripple.style.top = e.clientY - rect.top - 40 + 'px';
-    btn.appendChild(ripple);
-    setTimeout(() => ripple.remove(), 650);
-    // Added state
-    setAdded(true);
-    setTimeout(() => setAdded(false), 1800);
-  };
-
-  return (
-    <div className={`item-card fade-in${isPremium ? ' premium' : ''}`}>
-      {item.img &&
-      <img
-        className="card-img"
-        src={item.img}
-        alt={item.name}
-        style={compact ? { height: 130 } : {}}
-        loading="lazy" />
-
-      }
-      <div className="card-body" style={compact ? { padding: '12px 14px 14px' } : {}}>
-        {isPremium && <span className="badge-premium">★ Premium</span>}
-        <div className="item-name">{item.name}</div>
-        {item.desc && <div className="item-desc">{item.desc}</div>}
-        <div className="item-prices">
-          {single ?
-          <span className="price-single">{fmt(item.prices[0].value)}</span> :
-
-          item.prices.map((p, i) =>
-          <div className="price-pill" key={i}>
-                {p.label && <span className="price-label">{p.label}</span>}
-                <span className="price-value" style={{ fontFamily: "\"DM Sans\"" }}>{fmt(p.value)}</span>
-              </div>
-          )
+    const MENU = [
+      {
+        id: "pizzas",
+        name: "Pizzas",
+        subcategories: [
+          {
+            id: "tradicionais", name: "Tradicionais",
+            items: [
+              { id: 1,  name: "Muçarela",           desc: "Muçarela especial e orégano",                                    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 49 }, { label: "8 Pedaços", value: 59 }] },
+              { id: 2,  name: "Abobrinha do Campo",  desc: "Abobrinha fatiada com alho desidratado",                         img: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 49 }, { label: "8 Pedaços", value: 59 }] },
+              { id: 3,  name: "Calabresa",           desc: "Calabresa fatiada e cebola",                                     img: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 52 }, { label: "8 Pedaços", value: 62 }] },
+              { id: 4,  name: "Marguerita",          desc: "Muçarela, tomate e manjericão fresco",                           img: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 52 }, { label: "8 Pedaços", value: 62 }] },
+              { id: 5,  name: "Portuguesa",          desc: "Presunto, ovos, cebola e ervilha",                               img: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 55 }, { label: "8 Pedaços", value: 65 }] },
+              { id: 6,  name: "Pepperoni",           desc: "Pepperoni italiano e muçarela",                                  img: "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 55 }, { label: "8 Pedaços", value: 65 }] },
+              { id: 7,  name: "Bacon",               desc: "Bacon crocante e muçarela",                                      img: "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 55 }, { label: "8 Pedaços", value: 65 }] },
+              { id: 8,  name: "Atum",                desc: "Atum temperado, cebola e azeitonas",                             img: "https://images.unsplash.com/photo-1548369937-47519962c11a?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 55 }, { label: "8 Pedaços", value: 65 }] },
+              { id: 9,  name: "Palmito",             desc: "Palmito cremoso e muçarela",                                     img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 55 }, { label: "8 Pedaços", value: 65 }] },
+              { id: 10, name: "Brócolis",            desc: "Brócolis salteado e muçarela",                                   img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 45 }, { label: "8 Pedaços", value: 55 }] }
+            ]
+          },
+          {
+            id: "frango", name: "Frango",
+            items: [
+              { id: 11, name: "Frango com Catupiry",     desc: "Frango temperado da casa e catupiry",            img: "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 49 }, { label: "8 Pedaços", value: 59 }] },
+              { id: 12, name: "Frango Campestre",        desc: "Frango e creme de milho",                        img: "https://images.unsplash.com/photo-1528137871618-79d2021a68f1?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 49 }, { label: "8 Pedaços", value: 59 }] },
+              { id: 13, name: "Frango Especial Zacota",  desc: "Frango e mostarda, com toque agridoce especial", img: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 49 }, { label: "8 Pedaços", value: 59 }] },
+              { id: 14, name: "Strogonoff de Frango",    desc: "Frango ao molho cremoso especial",               img: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 59 }, { label: "8 Pedaços", value: 69 }] }
+            ]
+          },
+          {
+            id: "especiais", name: "Especiais",
+            items: [
+              { id: 15, name: "Toscana",               desc: "Linguiça toscana e cebola",           img: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 62 }, { label: "8 Pedaços", value: 72 }] },
+              { id: 16, name: "Siciliana",              desc: "Presunto, champignon e azeitonas",    img: "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 62 }, { label: "8 Pedaços", value: 72 }] },
+              { id: 17, name: "Rúcula com Tomate Seco", desc: "Rúcula fresca e tomate seco",         img: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 60 }, { label: "8 Pedaços", value: 70 }] },
+              { id: 18, name: "Carbonara",              desc: "Bacon, ovos e parmesão",              img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 60 }, { label: "8 Pedaços", value: 70 }] },
+              { id: 19, name: "Lombo Defumado",         desc: "Lombo defumado e muçarela especial",  img: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 60 }, { label: "8 Pedaços", value: 70 }] },
+              { id: 20, name: "Di Parma",               desc: "Presunto parma e rúcula",             img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 70 }, { label: "8 Pedaços", value: 80 }] }
+            ]
+          },
+          {
+            id: "premium", name: "Premium Zacota", premium: true,
+            items: [
+              { id: 21, name: "Bella Zacota",       desc: "Guirlanda tomate seco & burrata",          img: "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 89 }, { label: "8 Pedaços", value: 105 }] },
+              { id: 22, name: "Mignon & Gorgonzola",desc: "Filé mignon e gorgonzola nobre",           img: "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 82 }, { label: "8 Pedaços", value: 95 }]  },
+              { id: 23, name: "Costela Rústica",    desc: "Costela desfiada bem temperada",           img: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 78 }, { label: "8 Pedaços", value: 92 }]  },
+              { id: 24, name: "Camarão da Lua",     desc: "Camarão temperado e ervas frescas",        img: "https://images.unsplash.com/photo-1548369937-47519962c11a?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 89 }, { label: "8 Pedaços", value: 105 }] }
+            ]
+          },
+          {
+            id: "doces", name: "Pizzas Doces",
+            items: [
+              { id: 25, name: "Banana Nevada", desc: null, img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 45 }, { label: "8 Pedaços", value: 55 }] },
+              { id: 26, name: "Brigadeiro",    desc: null, img: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 45 }, { label: "8 Pedaços", value: 55 }] },
+              { id: 27, name: "Casadinho",     desc: null, img: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 45 }, { label: "8 Pedaços", value: 55 }] },
+              { id: 28, name: "Dois Amores",   desc: null, img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 45 }, { label: "8 Pedaços", value: 55 }] },
+              { id: 29, name: "Romeu e Julieta",desc: null,img: "https://images.unsplash.com/photo-1528137871618-79d2021a68f1?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 45 }, { label: "8 Pedaços", value: 55 }] }
+            ]
           }
-        </div>
-        <button className={`pedir-btn${added ? ' added' : ''}`} onClick={handlePedir}>
-          {added ? '✓ Adicionado!' : '🛒 Pedir pelo WhatsApp'}
-        </button>
-      </div>
-    </div>);
-
-}
-
-/* ─── MAIN APP ─────────────────────────────────────────── */
-function App() {
-  const [activeMain, setActiveMain] = useState('pizzas');
-  const [activeSub, setActiveSub] = useState('tradicionais');
-  const [tweaksOpen, setTweaksOpen] = useState(false);
-  const [cardStyle, setCardStyle] = useState('default');
-  const [accentColor, setAccentColor] = useState('#381E21');
-  const subTabsRef = useRef(null);
-
-  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-    "cardStyle": "default",
-    "accentColor": "#381E21",
-    "showPremiumBadge": true
-  } /*EDITMODE-END*/;
-
-  const [showPremiumBadge, setShowPremiumBadge] = useState(true);
-
-  const mainCat = MENU.find((c) => c.id === activeMain);
-  const subCat = mainCat?.subcategories.find((s) => s.id === activeSub) || mainCat?.subcategories[0];
-
-  const switchMain = (id) => {
-    setActiveMain(id);
-    const cat = MENU.find((c) => c.id === id);
-    setActiveSub(cat?.subcategories[0]?.id || '');
-  };
-
-  const switchSub = (id) => {
-    setActiveSub(id);
-    // scroll sub tab into view
-    if (subTabsRef.current) {
-      const btn = subTabsRef.current.querySelector(`[data-sub="${id}"]`);
-      if (btn) btn.scrollIntoView({ inline: 'nearest', block: 'nearest' });
-    }
-  };
-
-  // Tweaks protocol
-  useEffect(() => {
-    const handler = (e) => {
-      if (e.data?.type === '__activate_edit_mode') setTweaksOpen(true);
-      if (e.data?.type === '__deactivate_edit_mode') setTweaksOpen(false);
-    };
-    window.addEventListener('message', handler);
-    window.parent.postMessage({ type: '__edit_mode_available' }, '*');
-    return () => window.removeEventListener('message', handler);
-  }, []);
-
-  const setTweak = (key, val) => {
-    if (key === 'cardStyle') setCardStyle(val);
-    if (key === 'accentColor') setAccentColor(val);
-    if (key === 'showPremiumBadge') setShowPremiumBadge(val);
-    window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { [key]: val } }, '*');
-    document.documentElement.style.setProperty('--purple', key === 'accentColor' ? val : accentColor);
-  };
-
-  // Apply accent color
-  useEffect(() => {
-    document.documentElement.style.setProperty('--purple', accentColor);
-  }, [accentColor]);
-
-  const waNumber = "5500000000000";
-  const waMsg = encodeURIComponent("Olá, gostaria de fazer um pedido!");
-  const waUrl = `https://wa.me/${waNumber}?text=${waMsg}`;
-
-  return (
-    <>
-      {/* HEADER */}
-      <header className="header">
-        <div className="header-inner">
-          <img className="deco deco-pizza" src="img-pizza-t.png" alt="" />
-          <img className="deco deco-porcoes" src="img-porcoes-t.png" alt="" />
-          <img className="deco deco-plate" src="img-prato-t.png" alt="" />
-          <img src="zacota-logo-transparent.png" alt="Zacota" className="header-logo-img" />
-        </div>
-        <div className="main-tabs">
-          <div className="main-tabs-inner">
-            {MENU.map((cat) =>
-            <button
-              key={cat.id}
-              className={`main-tab${activeMain === cat.id ? ' active' : ''}`}
-              onClick={() => switchMain(cat.id)}>
-              
-                {cat.name}
-              </button>
-            )}
-          </div>
-        </div>
-      </header>
-
-      {/* SUB TABS */}
-      <div className="sub-tabs-wrap">
-        <div className="sub-tabs-inner" ref={subTabsRef}>
-          {mainCat?.subcategories.map((sub) =>
-          <button
-            key={sub.id}
-            data-sub={sub.id}
-            className={`sub-tab${activeSub === sub.id ? ' active' : ''}`}
-            onClick={() => switchSub(sub.id)}>
-            
-              {sub.name}
-            </button>
-          )}
-        </div>
-      </div>
-
-      {/* CONTENT */}
-      <main className="content">
-        {subCat &&
-        <div>
-            <div className="section-header">
-              <h2 className="section-title">{subCat.name}</h2>
-              <span className="section-count">{subCat.items.length} {subCat.items.length === 1 ? 'item' : 'itens'}</span>
-            </div>
-            <div className="card-grid">
-              {subCat.items.map((item) =>
-            <ItemCard
-              key={item.id}
-              item={item}
-              isPremium={showPremiumBadge && !!subCat.premium}
-              cardStyle={cardStyle} />
-
-            )}
-            </div>
-          </div>
-        }
-      </main>
-
-      {/* WHATSAPP BUTTON */}
-      <a
-        className="wa-btn"
-        href={waUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Fazer pedido pelo WhatsApp">
-        
-        <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-        </svg>
-      </a>
-
-      {/* TWEAKS PANEL */}
-      {tweaksOpen &&
-      <div className="tweaks-panel open">
-          <button className="tweak-close" onClick={() => {
-          setTweaksOpen(false);
-          window.parent.postMessage({ type: '__edit_mode_dismissed' }, '*');
-        }}>×</button>
-          <div className="tweaks-title">Tweaks</div>
-
-          <div className="tweak-row">
-            <div className="tweak-label">Estilo dos Cards</div>
-            <div className="tweak-toggle">
-              {['default', 'compact'].map((opt) =>
-            <button
-              key={opt}
-              className={`tweak-opt${cardStyle === opt ? ' active' : ''}`}
-              onClick={() => setTweak('cardStyle', opt)}>
-              
-                  {opt === 'default' ? 'Normal' : 'Compacto'}
-                </button>
-            )}
-            </div>
-          </div>
-
-          <div className="tweak-row">
-            <div className="tweak-label">Cor Principal</div>
-            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-              {['#710084', '#b50000', '#005b8e', '#1a6b3c', '#7a4a00'].map((c) =>
-            <button
-              key={c}
-              onClick={() => setTweak('accentColor', c)}
-              style={{
-                width: 28, height: 28, borderRadius: '50%',
-                background: c, border: accentColor === c ? '3px solid #333' : '2px solid transparent',
-                cursor: 'pointer'
-              }}
-              aria-label={`Cor ${c}`}>
-            </button>
-            )}
-            </div>
-          </div>
-
-          <div className="tweak-row">
-            <div className="tweak-label">Badge Premium</div>
-            <div className="tweak-toggle">
-              {[true, false].map((opt) =>
-            <button
-              key={String(opt)}
-              className={`tweak-opt${showPremiumBadge === opt ? ' active' : ''}`}
-              onClick={() => setTweak('showPremiumBadge', opt)}>
-              
-                  {opt ? 'Visível' : 'Oculto'}
-                </button>
-            )}
-            </div>
-          </div>
-        </div>
+        ]
+      },
+      {
+        id: "bebidas",
+        name: "Bebidas",
+        subcategories: [
+          {
+            id: "refrigerantes", name: "Refrigerantes",
+            items: [
+              { id: 30, name: "Refrigerante 350ml",  desc: null, img: "https://images.unsplash.com/photo-1554866585-74be897adde0?w=500&fit=crop&q=80", prices: [{ label: null, value: 7 }]  },
+              { id: 31, name: "H2O | Sprite Lemon",  desc: null, img: "https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?w=500&fit=crop&q=80", prices: [{ label: null, value: 8 }]  }
+            ]
+          },
+          {
+            id: "agua", name: "Água",
+            items: [
+              { id: 32, name: "Água com gás",  desc: null, img: "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=500&fit=crop&q=80", prices: [{ label: null, value: 5 }]   },
+              { id: 33, name: "Água sem gás",  desc: null, img: "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=500&fit=crop&q=80", prices: [{ label: null, value: 4.5 }] }
+            ]
+          },
+          {
+            id: "sucos", name: "Sucos e Bebidas",
+            items: [
+              { id: 34, name: "Pink Lemonade", desc: null,                                              img: "https://images.unsplash.com/photo-1621259182978-8ef4ee90a859?w=500&fit=crop&q=80", prices: [{ label: null, value: 15 }] },
+              { id: 35, name: "Suco Natural",  desc: "Abacaxi, Laranja, Limão, Maracujá, Morango",     img: "https://images.unsplash.com/photo-1621506289054-c53d94d60f00?w=500&fit=crop&q=80", prices: [{ label: null, value: 10 }] }
+            ]
+          },
+          {
+            id: "chopp", name: "Chopp & Cerveja",
+            items: [
+              { id: 36, name: "Caneca Chopp 375ml",   desc: null,                              img: "https://images.unsplash.com/photo-1608270586636-ed288a0a9fcb?w=500&fit=crop&q=80", prices: [{ label: null, value: 10 }] },
+              { id: 37, name: "Cervejas Ashby 600ml", desc: "Consultar sabores disponíveis",   img: "https://images.unsplash.com/photo-1608270586636-ed288a0a9fcb?w=500&fit=crop&q=80", prices: [{ label: null, value: 16 }] },
+              { id: 38, name: "Cervejas Long Neck",   desc: "Consultar sabores disponíveis",   img: "https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=500&fit=crop&q=80", prices: [{ label: null, value: 10 }] }
+            ]
+          }
+        ]
       }
-    </>);
+    ];
 
-}
+    const fmt = (v) => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
-ReactDOM.createRoot(document.getElementById('root')).render(<App />);
-</script>
+    let activeMain = 'pizzas';
+    let activeSub  = 'tradicionais';
+
+    function buildMainTabs() {
+      const el = document.getElementById('main-tabs');
+      el.innerHTML = '';
+      MENU.forEach(cat => {
+        const btn = document.createElement('button');
+        btn.className = 'main-tab' + (cat.id === activeMain ? ' active' : '');
+        btn.textContent = cat.name;
+        btn.addEventListener('click', () => {
+          activeMain = cat.id;
+          activeSub  = MENU.find(c => c.id === cat.id).subcategories[0].id;
+          render();
+        });
+        el.appendChild(btn);
+      });
+    }
+
+    function buildSubTabs() {
+      const el = document.getElementById('sub-tabs');
+      el.innerHTML = '';
+      const cat = MENU.find(c => c.id === activeMain);
+      cat.subcategories.forEach(sub => {
+        const btn = document.createElement('button');
+        btn.className = 'sub-tab' + (sub.id === activeSub ? ' active' : '');
+        btn.textContent = sub.name;
+        btn.addEventListener('click', () => {
+          activeSub = sub.id;
+          render();
+          btn.scrollIntoView({ inline: 'nearest', block: 'nearest' });
+        });
+        el.appendChild(btn);
+      });
+    }
+
+    function buildContent() {
+      const el = document.getElementById('content');
+      el.innerHTML = '';
+      const cat = MENU.find(c => c.id === activeMain);
+      const sub = cat.subcategories.find(s => s.id === activeSub) || cat.subcategories[0];
+      const isPremium = !!sub.premium;
+
+      const header = document.createElement('div');
+      header.className = 'section-header';
+      header.innerHTML = `
+        <h2 class="section-title">${sub.name}</h2>
+        <span class="section-count">${sub.items.length} ${sub.items.length === 1 ? 'item' : 'itens'}</span>
+      `;
+      el.appendChild(header);
+
+      const grid = document.createElement('div');
+      grid.className = 'card-grid';
+
+      sub.items.forEach((item, i) => {
+        const single = item.prices.length === 1 && item.prices[0].label === null;
+        const card = document.createElement('div');
+        card.className = 'item-card fade-in' + (isPremium ? ' premium' : '');
+        card.style.animationDelay = (i * 40) + 'ms';
+
+        let pricesHTML = '';
+        if (single) {
+          pricesHTML = `<span class="price-single">${fmt(item.prices[0].value)}</span>`;
+        } else {
+          pricesHTML = item.prices.map(p => `
+            <div class="price-pill">
+              ${p.label ? `<span class="price-label">${p.label}</span>` : ''}
+              <span class="price-value">${fmt(p.value)}</span>
+            </div>
+          `).join('');
+        }
+
+        const itemName = encodeURIComponent(item.name);
+        const waLink = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('Olá, quero pedir: ' + item.name)}`;
+
+        card.innerHTML = `
+          ${item.img ? `<img class="card-img" src="${item.img}" alt="${item.name}" loading="lazy" />` : ''}
+          <div class="card-body">
+            ${isPremium ? '<span class="badge-premium">★ Premium</span>' : ''}
+            <div class="item-name">${item.name}</div>
+            ${item.desc ? `<div class="item-desc">${item.desc}</div>` : ''}
+            <div class="item-prices">${pricesHTML}</div>
+            <a class="pedir-btn" href="${waLink}" target="_blank" rel="noopener noreferrer">
+              🛒 Pedir pelo WhatsApp
+            </a>
+          </div>
+        `;
+
+        card.querySelector('.pedir-btn').addEventListener('click', function(e) {
+          const btn = this;
+          const rect = btn.getBoundingClientRect();
+          const ripple = document.createElement('span');
+          ripple.className = 'ripple-el';
+          ripple.style.left = (e.clientX - rect.left - 40) + 'px';
+          ripple.style.top  = (e.clientY - rect.top  - 40) + 'px';
+          btn.appendChild(ripple);
+          setTimeout(() => ripple.remove(), 650);
+        });
+
+        grid.appendChild(card);
+      });
+
+      el.appendChild(grid);
+    }
+
+    function render() {
+      buildMainTabs();
+      buildSubTabs();
+      buildContent();
+    }
+
+    render();
+  </script>
 </body>
 </html>
