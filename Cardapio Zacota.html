@@ -89,8 +89,19 @@
       filter: drop-shadow(0 8px 20px rgba(0,0,0,0.5));
     }
 
+    .deco-bebidas {
+      width: clamp(180px, 24vw, 340px);
+      height: clamp(140px, 18vw, 260px);
+      right: clamp(-10px, 0vw, 20px);
+      bottom: clamp(-30px, -3vw, -10px);
+      object-fit: contain;
+      object-position: bottom right;
+      mix-blend-mode: screen;
+      filter: drop-shadow(0 8px 20px rgba(0,0,0,0.4));
+    }
+
     @media (max-width: 360px) {
-      .deco-plate, .deco-porcoes { display: none; }
+      .deco-plate, .deco-porcoes, .deco-bebidas { display: none; }
       .deco-pizza { width: 140px; height: 140px; left: -30px; bottom: -30px; }
     }
 
@@ -421,6 +432,7 @@
       <img class="deco deco-pizza" src="img-pizza-t.png" alt="" />
       <img class="deco deco-porcoes" src="img-porcoes-t.png" alt="" />
       <img class="deco deco-plate" src="img-prato-t.png" alt="" />
+      <img class="deco deco-bebidas" src="img-bebidas2-t.png" alt="" />
       <img src="zacota-logo-transparent.png" alt="Zacota" class="header-logo-img" />
     </div>
     <div class="main-tabs">
