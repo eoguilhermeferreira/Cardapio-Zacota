@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zacota — Cardápio Digital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --purple: #381E21;
+      --bg: #1e0c0f;
+      --text: #f0e0d6;
+      --text-muted: #b89a9d;
+      --border: #4a2a2e;
+      --card-bg: #2e1518;
+      --wa-green: #25D366;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* HEADER */
+    .header {
+      background: var(--purple);
+      z-index: 100;
+      box-shadow: 0 2px 20px rgba(56,30,33,0.5);
+      overflow: hidden;
+    }
+
+    .header-inner {
+      padding: 40px 24px 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      min-height: 260px;
+      overflow: visible;
+    }
+
+    .header-logo-img {
+      height: clamp(90px, 14vw, 140px);
+      width: auto;
+      display: block;
+      position: relative;
+      z-index: 3;
+    }
+
+    .deco {
+      position: absolute;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .deco-pizza {
+      width: clamp(240px, 32vw, 420px);
+      height: clamp(240px, 32vw, 420px);
+      left: clamp(-100px, -10vw, -50px);
+      bottom: clamp(-80px, -8vw, -40px);
+      object-fit: contain;
+      filter: drop-shadow(0 8px 24px rgba(0,0,0,0.5));
+    }
+
+    .deco-plate {
+      width: clamp(200px, 26vw, 360px);
+      height: clamp(200px, 26vw, 360px);
+      right: clamp(-60px, -5vw, -20px);
+      top: clamp(-80px, -8vw, -40px);
+      object-fit: contain;
+      filter: drop-shadow(0 8px 24px rgba(0,0,0,0.5));
+    }
+
+    .deco-porcoes {
+      width: clamp(160px, 20vw, 280px);
+      height: clamp(160px, 20vw, 280px);
+      left: clamp(20px, 5vw, 80px);
+      top: clamp(-70px, -7vw, -30px);
+      object-fit: contain;
+      filter: drop-shadow(0 8px 20px rgba(0,0,0,0.5));
+    }
+
+    @media (max-width: 360px) {
+      .deco-plate, .deco-porcoes { display: none; }
+      .deco-pizza { width: 140px; height: 140px; left: -30px; bottom: -30px; }
+    }
+
+    /* TABS */
+    .main-tabs {
+      background: var(--purple);
+      border-top: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .main-tabs-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+    }
+
+    .main-tab {
+      padding: 12px 24px;
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.6);
+      cursor: pointer;
+      border: none;
+      background: none;
+      border-bottom: 3px solid transparent;
+      transition: all 180ms ease;
+      letter-spacing: 0.03em;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .main-tab:hover { color: rgba(255,255,255,0.9); }
+    .main-tab.active { color: #fff; border-bottom-color: #fff; }
+
+    .sub-tabs-wrap {
+      background: rgba(35,10,12,0.95);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 90;
+    }
+
+    .sub-tabs-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 16px;
+      display: flex;
+      gap: 4px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .sub-tabs-inner::-webkit-scrollbar { display: none; }
+
+    .sub-tab {
+      padding: 12px 18px;
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.5);
+      cursor: pointer;
+      border: none;
+      background: none;
+      white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      transition: all 160ms ease;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .sub-tab:hover { color: #fff; }
+    .sub-tab.active { color: #fff; border-bottom-color: #fff; font-weight: 600; }
+
+    /* CONTENT */
+    .content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 24px 120px;
+    }
+
+    @media (max-width: 640px) {
+      .content { padding: 20px 16px 120px; }
+    }
+
+    .section-header {
+      margin-bottom: 24px;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(20px, 3.5vw, 28px);
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .section-count {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    /* CARD GRID */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+    }
+
+    @media (max-width: 640px) {
+      .card-grid { grid-template-columns: 1fr; gap: 12px; }
+    }
+
+    /* ITEM CARD */
+    .item-card {
+      background: var(--card-bg);
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 200ms ease, transform 200ms ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .item-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #c25060, #e07080);
+      opacity: 0;
+      transition: opacity 200ms ease;
+    }
+
+    .item-card:hover {
+      box-shadow: 0 12px 36px rgba(0,0,0,0.5);
+      transform: translateY(-2px);
+    }
+
+    .item-card:hover::before { opacity: 1; }
+
+    .item-card.premium {
+      background: linear-gradient(135deg, #3d1a1e 0%, #4e2228 100%);
+      border-color: #7a3840;
+    }
+
+    .item-card.premium::before { opacity: 0.4; }
+
+    .card-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-body {
+      padding: 16px 18px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+    }
+
+    .badge-premium {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--purple);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 20px;
+      align-self: flex-start;
+      margin-bottom: 2px;
+    }
+
+    .item-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.3;
+    }
+
+    .item-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    .item-prices {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    .price-pill {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 6px 12px;
+      flex: 1;
+      min-width: 90px;
+      transition: background 160ms ease;
+    }
+
+    .item-card:hover .price-pill { background: rgba(255,255,255,0.13); }
+
+    .price-label {
+      font-size: 10px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .price-value {
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .price-single {
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    /* PEDIR BUTTON */
+    .pedir-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      margin-top: 10px;
+      padding: 10px 16px;
+      background: var(--purple);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer;
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      transition: background 180ms ease, transform 150ms ease, box-shadow 180ms ease;
+      letter-spacing: 0.03em;
+      text-decoration: none;
+    }
+
+    .pedir-btn:hover {
+      background: #5a2028;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    }
+
+    .pedir-btn:active { transform: scale(0.97); }
+
+    @keyframes ripple {
+      0%   { transform: scale(0); opacity: 0.5; }
+      100% { transform: scale(4); opacity: 0; }
+    }
+
+    .ripple-el {
+      position: absolute;
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      background: rgba(255,255,255,0.25);
+      animation: ripple 600ms ease-out forwards;
+      pointer-events: none;
+      transform-origin: center;
+    }
+
+    /* WHATSAPP BUTTON */
+    .wa-btn {
+      position: fixed;
+      bottom: 28px;
+      right: 24px;
+      z-index: 999;
+      width: 58px;
+      height: 58px;
+      background: var(--wa-green);
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.45);
+      transition: transform 200ms ease, box-shadow 200ms ease;
+      text-decoration: none;
+    }
+
+    .wa-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 28px rgba(37,211,102,0.55);
+    }
+
+    .wa-btn svg { width: 30px; height: 30px; }
+
+    @media (max-width: 480px) {
+      .wa-btn { bottom: 20px; right: 16px; }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in { animation: fadeInUp 280ms ease forwards; }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+      <img class="deco deco-pizza" src="img-pizza-t.png" alt="" />
+      <img class="deco deco-porcoes" src="img-porcoes-t.png" alt="" />
+      <img class="deco deco-plate" src="img-prato-t.png" alt="" />
+      <img src="zacota-logo-transparent.png" alt="Zacota" class="header-logo-img" />
+    </div>
+    <div class="main-tabs">
+      <div class="main-tabs-inner" id="main-tabs"></div>
+    </div>
+  </header>
+
+  <!-- SUB TABS -->
+  <div class="sub-tabs-wrap">
+    <div class="sub-tabs-inner" id="sub-tabs"></div>
+  </div>
+
+  <!-- CONTENT -->
+  <main class="content" id="content"></main>
+
+  <!-- WHATSAPP -->
+  <a class="wa-btn" id="wa-btn" href="#" target="_blank" rel="noopener noreferrer" aria-label="Fazer pedido pelo WhatsApp">
+    <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+
+  <script>
+    const WA_NUMBER = "5500000000000";
+    const WA_MSG = encodeURIComponent("Olá, gostaria de fazer um pedido!");
+
+    document.getElementById('wa-btn').href = `https://wa.me/${WA_NUMBER}?text=${WA_MSG}`;
+
+    const MENU = [
+      {
+        id: "pizzas",
+        name: "Pizzas",
+        subcategories: [
+          {
+            id: "tradicionais", name: "Tradicionais",
+            items: [
+              { id: 1,  name: "Muçarela",           desc: "Muçarela especial e orégano",                                    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 49 }, { label: "8 Pedaços", value: 59 }] },
+              { id: 2,  name: "Abobrinha do Campo",  desc: "Abobrinha fatiada com alho desidratado",                         img: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 49 }, { label: "8 Pedaços", value: 59 }] },
+              { id: 3,  name: "Calabresa",           desc: "Calabresa fatiada e cebola",                                     img: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 52 }, { label: "8 Pedaços", value: 62 }] },
+              { id: 4,  name: "Marguerita",          desc: "Muçarela, tomate e manjericão fresco",                           img: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 52 }, { label: "8 Pedaços", value: 62 }] },
+              { id: 5,  name: "Portuguesa",          desc: "Presunto, ovos, cebola e ervilha",                               img: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 55 }, { label: "8 Pedaços", value: 65 }] },
+              { id: 6,  name: "Pepperoni",           desc: "Pepperoni italiano e muçarela",                                  img: "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 55 }, { label: "8 Pedaços", value: 65 }] },
+              { id: 7,  name: "Bacon",               desc: "Bacon crocante e muçarela",                                      img: "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 55 }, { label: "8 Pedaços", value: 65 }] },
+              { id: 8,  name: "Atum",                desc: "Atum temperado, cebola e azeitonas",                             img: "https://images.unsplash.com/photo-1548369937-47519962c11a?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 55 }, { label: "8 Pedaços", value: 65 }] },
+              { id: 9,  name: "Palmito",             desc: "Palmito cremoso e muçarela",                                     img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 55 }, { label: "8 Pedaços", value: 65 }] },
+              { id: 10, name: "Brócolis",            desc: "Brócolis salteado e muçarela",                                   img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 45 }, { label: "8 Pedaços", value: 55 }] }
+            ]
+          },
+          {
+            id: "frango", name: "Frango",
+            items: [
+              { id: 11, name: "Frango com Catupiry",     desc: "Frango temperado da casa e catupiry",            img: "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 49 }, { label: "8 Pedaços", value: 59 }] },
+              { id: 12, name: "Frango Campestre",        desc: "Frango e creme de milho",                        img: "https://images.unsplash.com/photo-1528137871618-79d2021a68f1?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 49 }, { label: "8 Pedaços", value: 59 }] },
+              { id: 13, name: "Frango Especial Zacota",  desc: "Frango e mostarda, com toque agridoce especial", img: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 49 }, { label: "8 Pedaços", value: 59 }] },
+              { id: 14, name: "Strogonoff de Frango",    desc: "Frango ao molho cremoso especial",               img: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 59 }, { label: "8 Pedaços", value: 69 }] }
+            ]
+          },
+          {
+            id: "especiais", name: "Especiais",
+            items: [
+              { id: 15, name: "Toscana",               desc: "Linguiça toscana e cebola",           img: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 62 }, { label: "8 Pedaços", value: 72 }] },
+              { id: 16, name: "Siciliana",              desc: "Presunto, champignon e azeitonas",    img: "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 62 }, { label: "8 Pedaços", value: 72 }] },
+              { id: 17, name: "Rúcula com Tomate Seco", desc: "Rúcula fresca e tomate seco",         img: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 60 }, { label: "8 Pedaços", value: 70 }] },
+              { id: 18, name: "Carbonara",              desc: "Bacon, ovos e parmesão",              img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 60 }, { label: "8 Pedaços", value: 70 }] },
+              { id: 19, name: "Lombo Defumado",         desc: "Lombo defumado e muçarela especial",  img: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 60 }, { label: "8 Pedaços", value: 70 }] },
+              { id: 20, name: "Di Parma",               desc: "Presunto parma e rúcula",             img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 70 }, { label: "8 Pedaços", value: 80 }] }
+            ]
+          },
+          {
+            id: "premium", name: "Premium Zacota", premium: true,
+            items: [
+              { id: 21, name: "Bella Zacota",       desc: "Guirlanda tomate seco & burrata",          img: "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 89 }, { label: "8 Pedaços", value: 105 }] },
+              { id: 22, name: "Mignon & Gorgonzola",desc: "Filé mignon e gorgonzola nobre",           img: "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 82 }, { label: "8 Pedaços", value: 95 }]  },
+              { id: 23, name: "Costela Rústica",    desc: "Costela desfiada bem temperada",           img: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 78 }, { label: "8 Pedaços", value: 92 }]  },
+              { id: 24, name: "Camarão da Lua",     desc: "Camarão temperado e ervas frescas",        img: "https://images.unsplash.com/photo-1548369937-47519962c11a?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 89 }, { label: "8 Pedaços", value: 105 }] }
+            ]
+          },
+          {
+            id: "doces", name: "Pizzas Doces",
+            items: [
+              { id: 25, name: "Banana Nevada", desc: null, img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 45 }, { label: "8 Pedaços", value: 55 }] },
+              { id: 26, name: "Brigadeiro",    desc: null, img: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 45 }, { label: "8 Pedaços", value: 55 }] },
+              { id: 27, name: "Casadinho",     desc: null, img: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 45 }, { label: "8 Pedaços", value: 55 }] },
+              { id: 28, name: "Dois Amores",   desc: null, img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 45 }, { label: "8 Pedaços", value: 55 }] },
+              { id: 29, name: "Romeu e Julieta",desc: null,img: "https://images.unsplash.com/photo-1528137871618-79d2021a68f1?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 45 }, { label: "8 Pedaços", value: 55 }] }
+            ]
+          }
+        ]
+      },
+      {
+        id: "bebidas",
+        name: "Bebidas",
+        subcategories: [
+          {
+            id: "refrigerantes", name: "Refrigerantes",
+            items: [
+              { id: 30, name: "Refrigerante 350ml",  desc: null, img: "https://images.unsplash.com/photo-1554866585-74be897adde0?w=500&fit=crop&q=80", prices: [{ label: null, value: 7 }]  },
+              { id: 31, name: "H2O | Sprite Lemon",  desc: null, img: "https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?w=500&fit=crop&q=80", prices: [{ label: null, value: 8 }]  }
+            ]
+          },
+          {
+            id: "agua", name: "Água",
+            items: [
+              { id: 32, name: "Água com gás",  desc: null, img: "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=500&fit=crop&q=80", prices: [{ label: null, value: 5 }]   },
+              { id: 33, name: "Água sem gás",  desc: null, img: "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=500&fit=crop&q=80", prices: [{ label: null, value: 4.5 }] }
+            ]
+          },
+          {
+            id: "sucos", name: "Sucos e Bebidas",
+            items: [
+              { id: 34, name: "Pink Lemonade", desc: null,                                              img: "https://images.unsplash.com/photo-1621259182978-8ef4ee90a859?w=500&fit=crop&q=80", prices: [{ label: null, value: 15 }] },
+              { id: 35, name: "Suco Natural",  desc: "Abacaxi, Laranja, Limão, Maracujá, Morango",     img: "https://images.unsplash.com/photo-1621506289054-c53d94d60f00?w=500&fit=crop&q=80", prices: [{ label: null, value: 10 }] }
+            ]
+          },
+          {
+            id: "chopp", name: "Chopp & Cerveja",
+            items: [
+              { id: 36, name: "Caneca Chopp 375ml",   desc: null,                              img: "https://images.unsplash.com/photo-1608270586636-ed288a0a9fcb?w=500&fit=crop&q=80", prices: [{ label: null, value: 10 }] },
+              { id: 37, name: "Cervejas Ashby 600ml", desc: "Consultar sabores disponíveis",   img: "https://images.unsplash.com/photo-1608270586636-ed288a0a9fcb?w=500&fit=crop&q=80", prices: [{ label: null, value: 16 }] },
+              { id: 38, name: "Cervejas Long Neck",   desc: "Consultar sabores disponíveis",   img: "https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=500&fit=crop&q=80", prices: [{ label: null, value: 10 }] }
+            ]
+          }
+        ]
+      }
+    ];
+
+    const fmt = (v) => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+    let activeMain = 'pizzas';
+    let activeSub  = 'tradicionais';
+
+    function buildMainTabs() {
+      const el = document.getElementById('main-tabs');
+      el.innerHTML = '';
+      MENU.forEach(cat => {
+        const btn = document.createElement('button');
+        btn.className = 'main-tab' + (cat.id === activeMain ? ' active' : '');
+        btn.textContent = cat.name;
+        btn.addEventListener('click', () => {
+          activeMain = cat.id;
+          activeSub  = MENU.find(c => c.id === cat.id).subcategories[0].id;
+          render();
+        });
+        el.appendChild(btn);
+      });
+    }
+
+    function buildSubTabs() {
+      const el = document.getElementById('sub-tabs');
+      el.innerHTML = '';
+      const cat = MENU.find(c => c.id === activeMain);
+      cat.subcategories.forEach(sub => {
+        const btn = document.createElement('button');
+        btn.className = 'sub-tab' + (sub.id === activeSub ? ' active' : '');
+        btn.textContent = sub.name;
+        btn.addEventListener('click', () => {
+          activeSub = sub.id;
+          render();
+          btn.scrollIntoView({ inline: 'nearest', block: 'nearest' });
+        });
+        el.appendChild(btn);
+      });
+    }
+
+    function buildContent() {
+      const el = document.getElementById('content');
+      el.innerHTML = '';
+      const cat = MENU.find(c => c.id === activeMain);
+      const sub = cat.subcategories.find(s => s.id === activeSub) || cat.subcategories[0];
+      const isPremium = !!sub.premium;
+
+      const header = document.createElement('div');
+      header.className = 'section-header';
+      header.innerHTML = `
+        <h2 class="section-title">${sub.name}</h2>
+        <span class="section-count">${sub.items.length} ${sub.items.length === 1 ? 'item' : 'itens'}</span>
+      `;
+      el.appendChild(header);
+
+      const grid = document.createElement('div');
+      grid.className = 'card-grid';
+
+      sub.items.forEach((item, i) => {
+        const single = item.prices.length === 1 && item.prices[0].label === null;
+        const card = document.createElement('div');
+        card.className = 'item-card fade-in' + (isPremium ? ' premium' : '');
+        card.style.animationDelay = (i * 40) + 'ms';
+
+        let pricesHTML = '';
+        if (single) {
+          pricesHTML = `<span class="price-single">${fmt(item.prices[0].value)}</span>`;
+        } else {
+          pricesHTML = item.prices.map(p => `
+            <div class="price-pill">
+              ${p.label ? `<span class="price-label">${p.label}</span>` : ''}
+              <span class="price-value">${fmt(p.value)}</span>
+            </div>
+          `).join('');
+        }
+
+        const itemName = encodeURIComponent(item.name);
+        const waLink = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('Olá, quero pedir: ' + item.name)}`;
+
+        card.innerHTML = `
+          ${item.img ? `<img class="card-img" src="${item.img}" alt="${item.name}" loading="lazy" />` : ''}
+          <div class="card-body">
+            ${isPremium ? '<span class="badge-premium">★ Premium</span>' : ''}
+            <div class="item-name">${item.name}</div>
+            ${item.desc ? `<div class="item-desc">${item.desc}</div>` : ''}
+            <div class="item-prices">${pricesHTML}</div>
+            <a class="pedir-btn" href="${waLink}" target="_blank" rel="noopener noreferrer">
+              🛒 Pedir pelo WhatsApp
+            </a>
+          </div>
+        `;
+
+        card.querySelector('.pedir-btn').addEventListener('click', function(e) {
+          const btn = this;
+          const rect = btn.getBoundingClientRect();
+          const ripple = document.createElement('span');
+          ripple.className = 'ripple-el';
+          ripple.style.left = (e.clientX - rect.left - 40) + 'px';
+          ripple.style.top  = (e.clientY - rect.top  - 40) + 'px';
+          btn.appendChild(ripple);
+          setTimeout(() => ripple.remove(), 650);
+        });
+
+        grid.appendChild(card);
+      });
+
+      el.appendChild(grid);
+    }
+
+    function render() {
+      buildMainTabs();
+      buildSubTabs();
+      buildContent();
+    }
+
+    render();
+  </script>
+</body>
+</html>
