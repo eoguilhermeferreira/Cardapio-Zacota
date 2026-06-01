@@ -466,57 +466,138 @@
         name: "Pizzas",
         subcategories: [
           {
-            id: "tradicionais", name: "Tradicionais",
+            id: "classicas", name: "Clássicas",
             items: [
-              { id: 1,  name: "Muçarela",           desc: "Muçarela especial e orégano",                                    img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 49 }, { label: "8 Pedaços", value: 59 }] },
-              { id: 2,  name: "Abobrinha do Campo",  desc: "Abobrinha fatiada com alho desidratado",                         img: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 49 }, { label: "8 Pedaços", value: 59 }] },
-              { id: 3,  name: "Calabresa",           desc: "Calabresa fatiada e cebola",                                     img: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 52 }, { label: "8 Pedaços", value: 62 }] },
-              { id: 4,  name: "Marguerita",          desc: "Muçarela, tomate e manjericão fresco",                           img: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 52 }, { label: "8 Pedaços", value: 62 }] },
-              { id: 5,  name: "Portuguesa",          desc: "Presunto, ovos, cebola e ervilha",                               img: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 55 }, { label: "8 Pedaços", value: 65 }] },
-              { id: 6,  name: "Pepperoni",           desc: "Pepperoni italiano e muçarela",                                  img: "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 55 }, { label: "8 Pedaços", value: 65 }] },
-              { id: 7,  name: "Bacon",               desc: "Bacon crocante e muçarela",                                      img: "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 55 }, { label: "8 Pedaços", value: 65 }] },
-              { id: 8,  name: "Atum",                desc: "Atum temperado, cebola e azeitonas",                             img: "https://images.unsplash.com/photo-1548369937-47519962c11a?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 55 }, { label: "8 Pedaços", value: 65 }] },
-              { id: 9,  name: "Palmito",             desc: "Palmito cremoso e muçarela",                                     img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 55 }, { label: "8 Pedaços", value: 65 }] },
-              { id: 10, name: "Brócolis",            desc: "Brócolis salteado e muçarela",                                   img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 45 }, { label: "8 Pedaços", value: 55 }] }
+              { id: 1,  name: "Muçarela",          desc: "Muçarela especial e orégano",                                                                     img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 49 }, { label: "8 Pedaços", value: 65 }] },
+              { id: 2,  name: "Abobrinha do Campo", desc: "Abobrinha fatiada com alho desidratado",                                                          img: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 49 }, { label: "8 Pedaços", value: 65 }] },
+              { id: 3,  name: "Calabresa",          desc: "Calabresa fatiada e cebola",                                                                      img: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 52 }, { label: "8 Pedaços", value: 65 }] },
+              { id: 4,  name: "Bacon",              desc: "Bacon crocante e muçarela",                                                                       img: "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 55 }] },
+              { id: 5,  name: "Atum",               desc: "Atum temperado, cebola e azeitonas",                                                              img: "https://images.unsplash.com/photo-1548369937-47519962c11a?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 55 }, { label: "8 Pedaços", value: 65 }] },
+              { id: 6,  name: "Palmito",            desc: "Palmito cremoso e muçarela",                                                                      img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 55 }] },
+              { id: 7,  name: "Moda da Casa",       desc: "Molho, muçarela, tomate, cebola, pimenta calabresa, pimenta biquinho, orégano e azeitona",        img: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 45 }, { label: "8 Pedaços", value: 55 }] },
+              { id: 8,  name: "4 Queijos",          desc: "Molho, muçarela, parmesão, gorgonzola, catupiry, orégano e azeitona",                             img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 45 }, { label: "8 Pedaços", value: 55 }] }
             ]
           },
           {
             id: "frango", name: "Frango",
             items: [
-              { id: 11, name: "Frango com Catupiry",     desc: "Frango temperado da casa e catupiry",            img: "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 49 }, { label: "8 Pedaços", value: 59 }] },
-              { id: 12, name: "Frango Campestre",        desc: "Frango e creme de milho",                        img: "https://images.unsplash.com/photo-1528137871618-79d2021a68f1?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 49 }, { label: "8 Pedaços", value: 59 }] },
-              { id: 13, name: "Frango Especial Zacota",  desc: "Frango e mostarda, com toque agridoce especial", img: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 49 }, { label: "8 Pedaços", value: 59 }] },
-              { id: 14, name: "Strogonoff de Frango",    desc: "Frango ao molho cremoso especial",               img: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 59 }, { label: "8 Pedaços", value: 69 }] }
+              { id: 11, name: "Frango com Catupiry",    desc: "Frango temperado da casa e catupiry",                img: "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 49 }, { label: "8 Pedaços", value: 65 }] },
+              { id: 12, name: "Frango Campestre",       desc: "Frango e creme de milho",                            img: "https://images.unsplash.com/photo-1528137871618-79d2021a68f1?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 49 }, { label: "8 Pedaços", value: 65 }] },
+              { id: 13, name: "Frango Especial Zacota", desc: "Frango e mostarda com toque agridoce especial",      img: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 49 }, { label: "8 Pedaços", value: 65 }] },
+              { id: 14, name: "Strogonoff de Frango",   desc: "Frango ao molho cremoso especial",                   img: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 59 }, { label: "8 Pedaços", value: 65 }] }
             ]
           },
           {
             id: "especiais", name: "Especiais",
             items: [
-              { id: 15, name: "Toscana",               desc: "Linguiça toscana e cebola",           img: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 62 }, { label: "8 Pedaços", value: 72 }] },
-              { id: 16, name: "Siciliana",              desc: "Presunto, champignon e azeitonas",    img: "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 62 }, { label: "8 Pedaços", value: 72 }] },
-              { id: 17, name: "Rúcula com Tomate Seco", desc: "Rúcula fresca e tomate seco",         img: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 60 }, { label: "8 Pedaços", value: 70 }] },
-              { id: 18, name: "Carbonara",              desc: "Bacon, ovos e parmesão",              img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 60 }, { label: "8 Pedaços", value: 70 }] },
-              { id: 19, name: "Lombo Defumado",         desc: "Lombo defumado e muçarela especial",  img: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 60 }, { label: "8 Pedaços", value: 70 }] },
-              { id: 20, name: "Di Parma",               desc: "Presunto parma e rúcula",             img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 70 }, { label: "8 Pedaços", value: 80 }] }
+              { id: 15, name: "La Quartucci", desc: "Linguiça toscana e cebola",          img: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 62 }, { label: "8 Pedaços", value: 75 }] },
+              { id: 16, name: "La Guazzelli", desc: "Presunto, champignon e azeitonas",   img: "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 62 }, { label: "8 Pedaços", value: 75 }] },
+              { id: 17, name: "La Viana",     desc: "Rúcula fresca e tomate seco",        img: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 60 }, { label: "8 Pedaços", value: 75 }] },
+              { id: 18, name: "La Garcia",    desc: "Bacon, ovos e parmesão",             img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 60 }, { label: "8 Pedaços", value: 75 }] },
+              { id: 19, name: "La Rotelli",   desc: "Lombo defumado e muçarela especial", img: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 60 }, { label: "8 Pedaços", value: 75 }] }
             ]
           },
           {
             id: "premium", name: "Premium Zacota", premium: true,
             items: [
-              { id: 21, name: "Bella Zacota",       desc: "Guirlanda tomate seco & burrata",          img: "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 89 }, { label: "8 Pedaços", value: 105 }] },
-              { id: 22, name: "Mignon & Gorgonzola",desc: "Filé mignon e gorgonzola nobre",           img: "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 82 }, { label: "8 Pedaços", value: 95 }]  },
-              { id: 23, name: "Costela Rústica",    desc: "Costela desfiada bem temperada",           img: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 78 }, { label: "8 Pedaços", value: 92 }]  },
-              { id: 24, name: "Camarão da Lua",     desc: "Camarão temperado e ervas frescas",        img: "https://images.unsplash.com/photo-1548369937-47519962c11a?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 89 }, { label: "8 Pedaços", value: 105 }] }
+              { id: 21, name: "Bella Zacota",            desc: "Guirlanda tomate seco & burrata",                        img: "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=500&fit=crop&q=80", prices: [{ label: "8 Pedaços", value: 119.9 }] },
+              { id: 22, name: "Bella Zacota Australiana",desc: "Guirlanda tomate seco & burrata, fritas e cheddar",      img: "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=500&fit=crop&q=80", prices: [{ label: "8 Pedaços", value: 119.9 }] },
+              { id: 23, name: "Bella Zacota Premium",    desc: "Guirlanda tomate seco & burrata, presunto de parma",     img: "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=500&fit=crop&q=80", prices: [{ label: "8 Pedaços", value: 149.9 }] },
+              { id: 24, name: "Di Antoniazzi",           desc: "Filé mignon, gorgonzola nobre e mel",                    img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 82 }, { label: "8 Pedaços", value: 98 }] },
+              { id: 25, name: "Della Coleta",            desc: "Costela desfiada bem temperada",                         img: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 78 }, { label: "8 Pedaços", value: 98 }] },
+              { id: 26, name: "La Rogati",               desc: "Camarão temperado e ervas frescas",                      img: "https://images.unsplash.com/photo-1548369937-47519962c11a?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 89 }, { label: "8 Pedaços", value: 105 }] },
+              { id: 27, name: "Di Paschoale",            desc: "Presunto parma e rúcula",                                img: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 70 }, { label: "8 Pedaços", value: 98 }] }
             ]
           },
           {
-            id: "doces", name: "Pizzas Doces",
+            id: "doces", name: "Doces",
             items: [
-              { id: 25, name: "Banana Nevada", desc: null, img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 45 }, { label: "8 Pedaços", value: 55 }] },
-              { id: 26, name: "Brigadeiro",    desc: null, img: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 45 }, { label: "8 Pedaços", value: 55 }] },
-              { id: 27, name: "Casadinho",     desc: null, img: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 45 }, { label: "8 Pedaços", value: 55 }] },
-              { id: 28, name: "Dois Amores",   desc: null, img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 45 }, { label: "8 Pedaços", value: 55 }] },
-              { id: 29, name: "Romeu e Julieta",desc: null,img: "https://images.unsplash.com/photo-1528137871618-79d2021a68f1?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 45 }, { label: "8 Pedaços", value: 55 }] }
+              { id: 31, name: "Di Bianchi",      desc: "Banana",                                                    img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 45 }, { label: "8 Pedaços", value: 55 }] },
+              { id: 32, name: "Brigadeiro",      desc: null,                                                        img: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 45 }, { label: "8 Pedaços", value: 55 }] },
+              { id: 33, name: "Casadinho",       desc: null,                                                        img: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 45 }, { label: "8 Pedaços", value: 55 }] },
+              { id: 34, name: "Dois Amores",     desc: null,                                                        img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 45 }, { label: "8 Pedaços", value: 55 }] },
+              { id: 35, name: "Romeu e Julieta", desc: null,                                                        img: "https://images.unsplash.com/photo-1528137871618-79d2021a68f1?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 45 }, { label: "8 Pedaços", value: 55 }] },
+              { id: 36, name: "Sonho de Valsa",  desc: "Chocolate ao leite, bombom Sonho de Valsa e paçoca",       img: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 45 }, { label: "8 Pedaços", value: 55 }] },
+              { id: 37, name: "Pudim",           desc: null,                                                        img: "https://images.unsplash.com/photo-1551024506-0bccd828d307?w=500&fit=crop&q=80", prices: [{ label: "Brotinho", value: 45 }, { label: "8 Pedaços", value: 55 }] }
+            ]
+          }
+        ]
+      },
+      {
+        id: "pratos",
+        name: "Pratos",
+        subcategories: [
+          {
+            id: "entradas", name: "Entradas",
+            items: [
+              { id: 101, name: "Bruscheta de Tomate Seco e Parmesão", desc: "6 unidades",                                              img: "https://images.unsplash.com/photo-1572695157366-5e585ab2b69f?w=500&fit=crop&q=80", prices: [{ label: null, value: 39.9 }] },
+              { id: 102, name: "Fritas (300g)",                        desc: null,                                                     img: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=500&fit=crop&q=80", prices: [{ label: null, value: 39.9 }] },
+              { id: 103, name: "Fritas Zacota (300g)",                 desc: "Creme de Cheddar e Bacon",                               img: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=500&fit=crop&q=80", prices: [{ label: null, value: 45.9 }] },
+              { id: 104, name: "Tulipa Frita (500g)",                  desc: null,                                                     img: "https://images.unsplash.com/photo-1527477396000-e27163b481c2?w=500&fit=crop&q=80", prices: [{ label: null, value: 39.9 }] },
+              { id: 105, name: "Tilápia Crocante (300g)",              desc: "Tiras de tilápia empanadas fritas, acompanha molho tártaro", img: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=500&fit=crop&q=80", prices: [{ label: null, value: 49.9 }] }
+            ]
+          },
+          {
+            id: "saladas", name: "Saladas",
+            items: [
+              { id: 111, name: "Billi Jack",      desc: "Alface americana, tomate, milho, palmito, bacon, molho Billy Jack e batata palha",               img: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500&fit=crop&q=80", prices: [{ label: null, value: 26.9 }] },
+              { id: 112, name: "Caesar Chicken",  desc: "Alface americana com tiras de frango grelhado, croutons, molho Caesar e queijo parmesão",        img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&fit=crop&q=80", prices: [{ label: null, value: 29.9 }] },
+              { id: 113, name: "Salada da Casa",  desc: "Alface americana, pepino, tomate, cebola, palmito e azeitona",                                   img: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=500&fit=crop&q=80", prices: [{ label: null, value: 21.9 }] }
+            ]
+          },
+          {
+            id: "grelhados", name: "Grelhados",
+            items: [
+              { id: 121, name: "Ancho Grelhado",            desc: null, img: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=500&fit=crop&q=80", prices: [{ label: null, value: 46.9 }] },
+              { id: 122, name: "Filé Mignon (Medalhão)",    desc: null, img: "https://images.unsplash.com/photo-1558030006-450675393462?w=500&fit=crop&q=80", prices: [{ label: null, value: 64.9 }] },
+              { id: 123, name: "Parmegiana de Frango",      desc: null, img: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=500&fit=crop&q=80", prices: [{ label: null, value: 45.9 }] },
+              { id: 124, name: "Parmegiana de Filé Mignon", desc: null, img: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=500&fit=crop&q=80", prices: [{ label: null, value: 56.9 }] },
+              { id: 125, name: "Picadinho de Mignon",       desc: null, img: "https://images.unsplash.com/photo-1544025162-d76694265947?w=500&fit=crop&q=80", prices: [{ label: null, value: 46.9 }] },
+              { id: 126, name: "Picanha Grelhada",          desc: null, img: "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=500&fit=crop&q=80", prices: [{ label: null, value: 64.9 }] },
+              { id: 127, name: "Salmão Grelhado",           desc: null, img: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=500&fit=crop&q=80", prices: [{ label: null, value: 64.9 }] },
+              { id: 128, name: "Tilápia Crocante ou Grelhada", desc: null, img: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=500&fit=crop&q=80", prices: [{ label: null, value: 36.9 }] },
+              { id: 129, name: "Filé de Frango Empanado",   desc: null, img: "https://images.unsplash.com/photo-1527477396000-e27163b481c2?w=500&fit=crop&q=80", prices: [{ label: null, value: 34.9 }] },
+              { id: 130, name: "Strogonoff de Carne",       desc: null, img: "https://images.unsplash.com/photo-1544025162-d76694265947?w=500&fit=crop&q=80", prices: [{ label: null, value: 39.9 }] }
+            ]
+          },
+          {
+            id: "risotos", name: "Risotos",
+            items: [
+              { id: 141, name: "Risoto de Alho Poró e Bacon", desc: null, img: "https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=500&fit=crop&q=80", prices: [{ label: null, value: 44.9 }] },
+              { id: 142, name: "Risoto de Camarão",           desc: null, img: "https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=500&fit=crop&q=80", prices: [{ label: null, value: 52.9 }] },
+              { id: 143, name: "Risoto de Filé Mignon",       desc: null, img: "https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=500&fit=crop&q=80", prices: [{ label: null, value: 49.9 }] }
+            ]
+          },
+          {
+            id: "massas", name: "Massas",
+            items: [
+              { id: 151, name: "Mac'n Cheese",       desc: null, img: "https://images.unsplash.com/photo-1543339308-43e59d6b73a6?w=500&fit=crop&q=80", prices: [{ label: null, value: 29.9 }] },
+              { id: 152, name: "Nhoque à Bolonhesa", desc: null, img: "https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb?w=500&fit=crop&q=80", prices: [{ label: null, value: 31.9 }] }
+            ]
+          },
+          {
+            id: "kids", name: "Menu Kids",
+            items: [
+              { id: 161, name: "Filezinho de Frango", desc: null, img: "https://images.unsplash.com/photo-1527477396000-e27163b481c2?w=500&fit=crop&q=80", prices: [{ label: null, value: 19.9 }] },
+              { id: 162, name: "Tirinhas de Mignon",  desc: null, img: "https://images.unsplash.com/photo-1558030006-450675393462?w=500&fit=crop&q=80", prices: [{ label: null, value: 27.9 }] }
+            ]
+          },
+          {
+            id: "combos", name: "Combos",
+            items: [
+              { id: 171, name: "Bife Ancho Grelhado",   desc: "3 pessoas — 600g de proteína", img: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=500&fit=crop&q=80", prices: [{ label: null, value: 134.9 }] },
+              { id: 172, name: "Parmegiana de Mignon",  desc: "3 pessoas — 600g de proteína", img: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=500&fit=crop&q=80", prices: [{ label: null, value: 159.9 }] },
+              { id: 173, name: "Picanha Grelhada",      desc: "3 pessoas — 600g de proteína", img: "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=500&fit=crop&q=80", prices: [{ label: null, value: 189.9 }] }
+            ]
+          },
+          {
+            id: "sobremesas", name: "Sobremesas",
+            items: [
+              { id: 181, name: "Grand Gateau",                  desc: null, img: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=500&fit=crop&q=80", prices: [{ label: null, value: 28 }] },
+              { id: 182, name: "Petit Gateau",                  desc: null, img: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=500&fit=crop&q=80", prices: [{ label: null, value: 26 }] },
+              { id: 183, name: "Mini Churros Recheado",         desc: "6 unidades",                                                                              img: "https://images.unsplash.com/photo-1624371414361-e670edf4898e?w=500&fit=crop&q=80", prices: [{ label: null, value: 20 }] },
+              { id: 184, name: "Mousse de Chocolate",           desc: null, img: "https://images.unsplash.com/photo-1551024506-0bccd828d307?w=500&fit=crop&q=80", prices: [{ label: null, value: 24 }] },
+              { id: 185, name: "Banana com Doce de Leite",      desc: null, img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500&fit=crop&q=80", prices: [{ label: null, value: 22 }] }
             ]
           }
         ]
@@ -528,30 +609,40 @@
           {
             id: "refrigerantes", name: "Refrigerantes",
             items: [
-              { id: 30, name: "Refrigerante 350ml",  desc: null, img: "https://images.unsplash.com/photo-1554866585-74be897adde0?w=500&fit=crop&q=80", prices: [{ label: null, value: 7 }]  },
-              { id: 31, name: "H2O | Sprite Lemon",  desc: null, img: "https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?w=500&fit=crop&q=80", prices: [{ label: null, value: 8 }]  }
+              { id: 201, name: "Refrigerante 350ml", desc: null, img: "https://images.unsplash.com/photo-1554866585-74be897adde0?w=500&fit=crop&q=80", prices: [{ label: null, value: 7 }] },
+              { id: 202, name: "H2O | Sprite Lemon", desc: null, img: "https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?w=500&fit=crop&q=80", prices: [{ label: null, value: 8 }] }
             ]
           },
           {
             id: "agua", name: "Água",
             items: [
-              { id: 32, name: "Água com gás",  desc: null, img: "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=500&fit=crop&q=80", prices: [{ label: null, value: 5 }]   },
-              { id: 33, name: "Água sem gás",  desc: null, img: "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=500&fit=crop&q=80", prices: [{ label: null, value: 4.5 }] }
+              { id: 211, name: "Água com gás",  desc: null, img: "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=500&fit=crop&q=80", prices: [{ label: null, value: 6 }] },
+              { id: 212, name: "Água sem gás",  desc: null, img: "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=500&fit=crop&q=80", prices: [{ label: null, value: 5 }] }
             ]
           },
           {
             id: "sucos", name: "Sucos e Bebidas",
             items: [
-              { id: 34, name: "Pink Lemonade", desc: null,                                              img: "https://images.unsplash.com/photo-1621259182978-8ef4ee90a859?w=500&fit=crop&q=80", prices: [{ label: null, value: 15 }] },
-              { id: 35, name: "Suco Natural",  desc: "Abacaxi, Laranja, Limão, Maracujá, Morango",     img: "https://images.unsplash.com/photo-1621506289054-c53d94d60f00?w=500&fit=crop&q=80", prices: [{ label: null, value: 10 }] }
+              { id: 221, name: "Pink Lemonade", desc: null,                                                    img: "https://images.unsplash.com/photo-1621259182978-8ef4ee90a859?w=500&fit=crop&q=80", prices: [{ label: null, value: 15 }] },
+              { id: 222, name: "Suco Natural",  desc: "Sabores: Abacaxi, Laranja, Limão, Maracujá e Morango", img: "https://images.unsplash.com/photo-1621506289054-c53d94d60f00?w=500&fit=crop&q=80", prices: [{ label: null, value: 10 }] }
+            ]
+          },
+          {
+            id: "drinks", name: "Drinks & Doses",
+            items: [
+              { id: 231, name: "Aperol Spritz", desc: "Aperol e prosecco",                                img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&fit=crop&q=80", prices: [{ label: null, value: 35 }] },
+              { id: 232, name: "Caipirinhas",   desc: "Vodka, cachaça ou saquê — consulte os sabores",   img: "https://images.unsplash.com/photo-1536935338788-846bb9981813?w=500&fit=crop&q=80", prices: [{ label: null, value: 25 }] },
+              { id: 233, name: "Gin Tônica",    desc: "Gin, tônica, gelo e especiarias",                 img: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=500&fit=crop&q=80", prices: [{ label: null, value: 35 }] },
+              { id: 234, name: "Gin Tropical",  desc: "Gin, energético tropical, suco de laranja e gelo",img: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=500&fit=crop&q=80", prices: [{ label: null, value: 37 }] },
+              { id: 235, name: "Mojito",        desc: "Rum branco, limão, hortelã e água com gás",       img: "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=500&fit=crop&q=80", prices: [{ label: null, value: 28 }] }
             ]
           },
           {
             id: "chopp", name: "Chopp & Cerveja",
             items: [
-              { id: 36, name: "Caneca Chopp 375ml",   desc: null,                              img: "https://images.unsplash.com/photo-1608270586636-ed288a0a9fcb?w=500&fit=crop&q=80", prices: [{ label: null, value: 10 }] },
-              { id: 37, name: "Cervejas Ashby 600ml", desc: "Consultar sabores disponíveis",   img: "https://images.unsplash.com/photo-1608270586636-ed288a0a9fcb?w=500&fit=crop&q=80", prices: [{ label: null, value: 16 }] },
-              { id: 38, name: "Cervejas Long Neck",   desc: "Consultar sabores disponíveis",   img: "https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=500&fit=crop&q=80", prices: [{ label: null, value: 10 }] }
+              { id: 241, name: "Caneca Chopp 375ml",   desc: null,                        img: "https://images.unsplash.com/photo-1608270586636-ed288a0a9fcb?w=500&fit=crop&q=80", prices: [{ label: null, value: 10 }] },
+              { id: 242, name: "Cervejas Ashby 600ml", desc: "Consultar sabores",         img: "https://images.unsplash.com/photo-1608270586636-ed288a0a9fcb?w=500&fit=crop&q=80", prices: [{ label: null, value: 16 }] },
+              { id: 243, name: "Cervejas Long Neck",   desc: "Consultar sabores",         img: "https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=500&fit=crop&q=80", prices: [{ label: null, value: 10 }] }
             ]
           }
         ]
@@ -561,7 +652,7 @@
     const fmt = (v) => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
     let activeMain = 'pizzas';
-    let activeSub  = 'tradicionais';
+    let activeSub  = 'classicas';
 
     function buildMainTabs() {
       const el = document.getElementById('main-tabs');
