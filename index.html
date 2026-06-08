@@ -71,42 +71,34 @@
       filter: drop-shadow(0 8px 24px rgba(0,0,0,0.5));
     }
 
-    .deco-plate {
-      right: clamp(-60px, -5vw, -20px);
-      top: clamp(-80px, -8vw, -40px);
-      object-fit: contain;
-      filter: drop-shadow(0 8px 24px rgba(0,0,0,0.5));
-    }
-
-    .deco-porcoes {
+    .deco-prato {
       left: clamp(20px, 5vw, 80px);
       top: clamp(-70px, -7vw, -30px);
       object-fit: contain;
       filter: drop-shadow(0 8px 20px rgba(0,0,0,0.5));
     }
 
+    .deco-porcoes {
+      right: clamp(40px, 11vw, 150px);
+      top: clamp(-80px, -8vw, -40px);
+      width: clamp(180px, 22vw, 300px);
+      height: clamp(180px, 22vw, 300px);
+      object-fit: contain;
+      filter: drop-shadow(0 8px 24px rgba(0,0,0,0.5));
+    }
+
     .deco-bebidas {
       right: clamp(-10px, 0vw, 20px);
-      bottom: clamp(-30px, -3vw, -10px);
+      bottom: clamp(-80px, -8vw, -40px);
+      width: clamp(210px, 27vw, 365px);
+      height: clamp(210px, 27vw, 365px);
       object-fit: contain;
       object-position: bottom right;
       filter: drop-shadow(0 8px 20px rgba(0,0,0,0.4));
     }
 
-    #deco-porcoes-img {
-      right: clamp(40px, 11vw, 150px);
-      width: clamp(180px, 22vw, 300px);
-      height: clamp(180px, 22vw, 300px);
-    }
-
-    #deco-bebidas-img {
-      width: clamp(210px, 27vw, 365px);
-      height: clamp(210px, 27vw, 365px);
-      bottom: clamp(-80px, -8vw, -40px);
-    }
-
     @media (max-width: 360px) {
-      .deco-plate, .deco-porcoes, .deco-bebidas { display: none; }
+      .deco-prato, .deco-porcoes, .deco-bebidas { display: none; }
       .deco-pizza { width: 140px; height: 140px; left: -30px; bottom: -30px; }
     }
 
@@ -434,10 +426,10 @@
   <!-- HEADER -->
   <header class="header">
     <div class="header-inner">
-      <img class="deco deco-pizza" src="img-pizza-t.png?v=2" alt="" />
-      <img class="deco deco-plate" src="img-porcoes-t.png?v=2" alt="" id="deco-porcoes-img" />
-      <img class="deco deco-porcoes" src="img-prato-t.png?v=2" alt="" />
-      <img class="deco deco-bebidas" src="img-drinks2.png?v=2" alt="" id="deco-bebidas-img" crossorigin="anonymous" />
+      <img class="deco deco-pizza" src="img-pizza-t.png?v=3" alt="" />
+      <img class="deco deco-prato" src="img-prato-t.png?v=3" alt="" />
+      <img class="deco deco-porcoes" src="img-porcoes-t.png?v=3" alt="" />
+      <img class="deco deco-bebidas" src="img-drinks2.png?v=3" alt="" id="deco-bebidas-img" crossorigin="anonymous" />
       <img src="zacota-logo-transparent.png" alt="Zacota" class="header-logo-img" />
     </div>
     <div class="main-tabs">
