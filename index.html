@@ -60,11 +60,11 @@
       position: absolute;
       pointer-events: none;
       z-index: 2;
+      width: clamp(220px, 28vw, 380px);
+      height: clamp(220px, 28vw, 380px);
     }
 
     .deco-pizza {
-      width: clamp(240px, 32vw, 420px);
-      height: clamp(240px, 32vw, 420px);
       left: clamp(-100px, -10vw, -50px);
       bottom: clamp(-80px, -8vw, -40px);
       object-fit: contain;
@@ -72,8 +72,6 @@
     }
 
     .deco-plate {
-      width: clamp(200px, 26vw, 360px);
-      height: clamp(200px, 26vw, 360px);
       right: clamp(-60px, -5vw, -20px);
       top: clamp(-80px, -8vw, -40px);
       object-fit: contain;
@@ -81,8 +79,6 @@
     }
 
     .deco-porcoes {
-      width: clamp(160px, 20vw, 280px);
-      height: clamp(160px, 20vw, 280px);
       left: clamp(20px, 5vw, 80px);
       top: clamp(-70px, -7vw, -30px);
       object-fit: contain;
@@ -90,8 +86,6 @@
     }
 
     .deco-bebidas {
-      width: clamp(180px, 24vw, 340px);
-      height: clamp(140px, 18vw, 260px);
       right: clamp(-10px, 0vw, 20px);
       bottom: clamp(-30px, -3vw, -10px);
       object-fit: contain;
@@ -429,8 +423,8 @@
   <header class="header">
     <div class="header-inner">
       <img class="deco deco-pizza" src="img-pizza-t.png" alt="" />
-      <img class="deco deco-porcoes" src="img-porcoes-t.png" alt="" />
-      <img class="deco deco-plate" src="img-prato-t.png" alt="" />
+      <img class="deco deco-plate" src="img-porcoes-t.png" alt="" />
+      <img class="deco deco-porcoes" src="img-prato-t.png" alt="" />
       <img class="deco deco-bebidas" src="img-drinks2.png" alt="" id="deco-bebidas-img" crossorigin="anonymous" />
       <img src="zacota-logo-transparent.png" alt="Zacota" class="header-logo-img" />
     </div>
